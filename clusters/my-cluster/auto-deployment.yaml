@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: podinfo
-  namespace: default
+  name: multi-stage-build
+  namespace: auto-deployment
 spec:
   selector:
     matchLabels:
-      app: podinfo
+      app: multi-stage-build
   template:
     metadata:
       labels:
-        app: podinfo
+        app: multi-stage-build
     spec:
       containers:
-        - name: podinfod
-          image: ghcr.io/stefanprodan/podinfo:5.0.0
+        - name: multi-stage-build
+          image: nikowoj900/multi-stage-build:1.0
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
-              containerPort: 9898
+              containerPort: 80
               protocol: TCP
